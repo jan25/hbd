@@ -2,6 +2,9 @@
 if ("serviceWorker" in navigator) {
   // Wait for the 'load' event to not block other work
   window.addEventListener("load", async () => {
+    ////////// REMOVE
+    return;
+
     // Try to register the service worker.
     try {
       // Capture the registration for later use, if needed

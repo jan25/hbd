@@ -5,3 +5,6 @@ clip.b64
 build.sh
 train/
 clipped.mov
+**/img.jpeg
+node_modules
+scriptjs.out
