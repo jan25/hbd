@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HBD</title>
+    <title>hbd</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -80,17 +80,21 @@
     <!-- Progress Bar -->
     <progress id="progressBar" value="0" max="100"></progress>
 
+    <div id="playText" class="pt-6 text-sm italic text-gray-400">Click on screen to play</div>
+
     <script>
         const audioPlayer = document.getElementById('audioPlayer');
         const progressBar = document.getElementById('progressBar');
         const equalizerCanvas = document.getElementById('equalizerCanvas');
+        const playText = document.getElementById('playText');
         const ctx = equalizerCanvas.getContext('2d');
 
         // Equalizer animation variables
         let animationFrameId = null;
-        const barCount = 5;
-        const barWidth = 10;
-        const barSpacing = 10;
+        const canvasW = 100;
+        const barCount = 4;
+        const barWidth = 8;
+        const barSpacing = 8;
         const barColor = '#6ee7b7';
 
         // Store static heights for paused state
@@ -112,6 +116,7 @@
          */
         function drawEqualizer() {
             ctx.clearRect(0, 0, equalizerCanvas.width, equalizerCanvas.height); // Clear canvas
+            const xoffset = (canvasW - barCount * barWidth  - (barCount - 1) * barSpacing) / 2;
 
             if (!audioPlayer.paused) {
                 // When playing, draw dynamic bars
@@ -122,7 +127,7 @@
                     const y = equalizerCanvas.height - height; // Draw from bottom up
 
                     ctx.fillStyle = barColor;
-                    ctx.fillRect(x, y, barWidth, height);
+                    ctx.fillRect(x + xoffset, y, barWidth, height);
                 }
                 // Continue animation loop only if playing
                 animationFrameId = requestAnimationFrame(drawEqualizer);
@@ -134,7 +139,7 @@
                     const y = equalizerCanvas.height - height; // Draw from bottom up
 
                     ctx.fillStyle = barColor;
-                    ctx.fillRect(x, y, barWidth, height);
+                    ctx.fillRect(x + xoffset, y, barWidth, height);
                 }
                 // Do NOT continue animation loop if paused
                 if (animationFrameId) {
@@ -157,6 +162,8 @@
             if (!animationFrameId) {
                 drawEqualizer();
             }
+
+            playText.style.visibility = 'hidden';
         }
 
         /**
@@ -173,6 +180,7 @@
             }
             generateStaticBarHeights(); // Generate new static heights for the pause
             drawEqualizer(); // Draw one frame with the new static heights
+            playText.style.visibility = 'visible';
         }
 
         // Event listener when audio metadata is loaded
@@ -238,6 +246,7 @@
             // Set the audio's current time to the new time
             audioPlayer.currentTime = newTime;
         });
+
     </script>
 </body>
 </html>
