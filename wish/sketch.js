@@ -14,6 +14,7 @@ var finalTexts = [];
 var nextT = 0;
 var maxChangeForce = 17;
 let timer = 500;
+let wordDelay = 4000;
 
 let img;
 
@@ -31,6 +32,9 @@ function setup() {
     // mobile screens
     frameRate(24);
     pixelDensity(1);
+    timer = 5000;
+    wordDelay = 8000;
+    texts = finalTexts;
   }
 
   let newMainNames = [];
@@ -106,7 +110,7 @@ function draw() {
     v.show();
   }
 
-  if (millis() >= 4000 + timer) {
+  if (millis() >= wordDelay + timer) {
     nextWord();
     timer = millis();
   }
