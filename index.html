@@ -200,7 +200,7 @@
         /**
          * Pauses the audio playback instantly.
          */
-        function pausePlayback(isEnd) {
+        function pausePlayback() {
             audioPlayer.volume = 0; // Set volume to zero instantly
             audioPlayer.pause(); // Pause the audio
 
@@ -300,7 +300,8 @@
             if (!isValidKey(key)) { 
                 window.location.href = "https://www.google.com/search?q=happy+birthday+stranger";
             } else {
-                window.location.href = "/wish/index.html?k=" + key;
+                const prefix = window.location.href.includes('jan25.github') ? '/hbd' : '';
+                window.location.href = prefix + "/wish/index.html?k=" + key;
             }
         });
 
