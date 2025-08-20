@@ -28,6 +28,15 @@ function param(k, defaultFn = () => err()) {
 }
 
 function setup() {
+  let newMainNames = [];
+  mainNames.forEach((mainName) => {
+    newMainName = atob(mainName);
+    finalTexts.push("Happy", "Birthday", newMainName);
+    newMainNames.push(newMainName);
+  });
+  mainNames = newMainNames;
+  texts.push(mainNames[0] + "!");
+
   if (displayWidth < 500) {
     console.log("setting mobile screen values for width", displayWidth);
     // mobile screens
@@ -37,15 +46,6 @@ function setup() {
     wordDelay = 8000;
     texts = finalTexts;
   }
-
-  let newMainNames = [];
-  mainNames.forEach((mainName) => {
-    newMainName = atob(mainName);
-    finalTexts.push("Happy", "Birthday", newMainName);
-    newMainNames.push(newMainName);
-  });
-  mainNames = newMainNames;
-  texts.push(mainNames[0]);
 
   const key = param("k", () => "_foo_");
   if (!isValidKey(key)) {
