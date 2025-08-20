@@ -27,6 +27,11 @@ function param(k, defaultFn = () => err()) {
 }
 
 function setup() {
+  if (wdith < 500) {
+    // mobile screens
+    frameRate(24);
+  }
+
   let newMainNames = [];
   mainNames.forEach((mainName) => {
     newMainName = atob(mainName);
