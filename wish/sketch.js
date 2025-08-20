@@ -27,7 +27,7 @@ function param(k, defaultFn = () => err()) {
 }
 
 function setup() {
-  if (wdith < 500) {
+  if (width < 500) {
     // mobile screens
     frameRate(24);
   }
@@ -93,8 +93,8 @@ function draw() {
 
   for (var i = 0; i < imgVehicles.length; i++) {
     var v = imgVehicles[i];
-    v.behaviors();
-    v.update();
+    // v.behaviors();
+    // v.update();
     v.show();
   }
 
