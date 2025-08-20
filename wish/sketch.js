@@ -30,6 +30,7 @@ function setup() {
   if (width < 500) {
     // mobile screens
     frameRate(24);
+    pixelDensity(1);
   }
 
   let newMainNames = [];
