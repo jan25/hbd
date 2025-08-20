@@ -28,7 +28,8 @@ function param(k, defaultFn = () => err()) {
 }
 
 function setup() {
-  if (width < 500) {
+  if (displayWidth < 500) {
+    console.log("setting mobile screen values for width", displayWidth);
     // mobile screens
     frameRate(24);
     pixelDensity(1);
